@@ -68,9 +68,14 @@ https://uol.de/ddi/personen/anatolij-fandrich
 * Option Auslagenerstattung: ihr bestellt direkt beim Händler und bekommt das Geld von der Uni erstattet (ca. 3 Tage)
 
 ### Onlineshops:
-* https://www.berrybase.de/ https://www.makershop.de/ https://eckstein-shop.de/
-* https://www.exp-tech.de/ https://www.pollin.de/ https://www.reichelt.de/
-* https://www.conrad.de/ https://www.amazon.de/
+* https://www.berrybase.de/ 
+* https://www.makershop.de/ 
+* https://eckstein-shop.de/
+* https://www.exp-tech.de/ 
+* https://www.pollin.de/ 
+* https://www.reichelt.de/
+* https://www.conrad.de/ 
+* https://www.amazon.de/
 
 ## Hinweise zum 3D-Druck
 * Nutzung der Drucker nur nach Einweisung
