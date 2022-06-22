@@ -90,12 +90,12 @@ https://uol.de/ddi/personen/anatolij-fandrich
 * Laserbox Projekt exportieren und zur Uni mitbringen
 
 Checkliste Projektdokumentation
-o Groben Projektplan erstellen
-o Zwischenstände fotografieren und Videos machen
-o Projekttagebuch führen
-o Fehler und Experimente dokumentieren
-o Materialliste zusammenstellen
-o Links und Ressourcen sammeln
-o Kurzbeschreibungen verfassen
-o Dateien und Code aktuell halten
-o Code anfängerfreundlich erläutern
+* Groben Projektplan erstellen
+* Zwischenstände fotografieren und Videos machen
+* Projekttagebuch führen
+* Fehler und Experimente dokumentieren
+* Materialliste zusammenstellen
+* Links und Ressourcen sammeln
+* Kurzbeschreibungen verfassen
+* Dateien und Code aktuell halten
+* Code anfängerfreundlich erläutern
