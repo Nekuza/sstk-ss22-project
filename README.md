@@ -94,7 +94,7 @@ https://uol.de/ddi/personen/anatolij-fandrich
 * Prüfen, ob sich die Konturen der Modelle innerhalb der Dimensionen des Holzes/Acrylglases befinden
 * Laserbox Projekt exportieren und zur Uni mitbringen
 
-Checkliste Projektdokumentation
+## Checkliste Projektdokumentation
 * Groben Projektplan erstellen
 * Zwischenstände fotografieren und Videos machen
 * Projekttagebuch führen
