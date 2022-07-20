@@ -1,0 +1,289 @@
+[
+    {
+        "id": "4fec764d98ee6898",
+        "type": "tab",
+        "label": "Bewässerung",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c9258a62fd9fec60",
+        "type": "ui_button",
+        "z": "4fec764d98ee6898",
+        "name": "",
+        "group": "2b96f61c079a064d",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Manuelle Bewässerung",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "4f6b946ec21b0517"
+            ]
+        ]
+    },
+    {
+        "id": "75b80b38f4ffb0ea",
+        "type": "ui_toast",
+        "z": "4fec764d98ee6898",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 740,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "bb824968cc092373",
+        "type": "ui_audio",
+        "z": "4fec764d98ee6898",
+        "name": "Audio Benachrichtigung",
+        "group": "0c0d808961e8358b",
+        "voice": "urn:moz-tts:sapi:Microsoft Hedda Desktop - German?de-DE",
+        "always": true,
+        "x": 670,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "815b54d71170dd2f",
+        "type": "ui_gauge",
+        "z": "4fec764d98ee6898",
+        "name": "",
+        "group": "8b70eafc253d7912",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Feuchtigkeit",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#b50000",
+            "#e6e600",
+            "#00ff40"
+        ],
+        "seg1": "300",
+        "seg2": "600",
+        "className": "",
+        "x": 610,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7acdca336aab8ac5",
+        "type": "ui_gauge",
+        "z": "4fec764d98ee6898",
+        "name": "",
+        "group": "8b70eafc253d7912",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "verbleibendes Wasser",
+        "label": "ml",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "1000",
+        "colors": [
+            "#b50000",
+            "#e6e600",
+            "#00ff40"
+        ],
+        "seg1": "300",
+        "seg2": "600",
+        "className": "",
+        "x": 760,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "2c79dc4da4bf2a3a",
+        "type": "mqtt in",
+        "z": "4fec764d98ee6898",
+        "name": "",
+        "topic": "pflanzentopf",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1eeab386b41610ce",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "728d77dd85347374",
+                "4b59401996f45a71"
+            ]
+        ]
+    },
+    {
+        "id": "4f6b946ec21b0517",
+        "type": "mqtt out",
+        "z": "4fec764d98ee6898",
+        "name": "",
+        "topic": "pflanzentopf/pumpe",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1eeab386b41610ce",
+        "x": 610,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "728d77dd85347374",
+        "type": "debug",
+        "z": "4fec764d98ee6898",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "4b59401996f45a71",
+        "type": "switch",
+        "z": "4fec764d98ee6898",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "pflanzentopf/feuchtigkeit",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "pflanzentopf/verbleibendesWasser",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "pflanzentopf/benachrichtigung",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 370,
+        "y": 400,
+        "wires": [
+            [
+                "815b54d71170dd2f"
+            ],
+            [
+                "7acdca336aab8ac5"
+            ],
+            [
+                "bb824968cc092373",
+                "75b80b38f4ffb0ea"
+            ]
+        ]
+    },
+    {
+        "id": "2b96f61c079a064d",
+        "type": "ui_group",
+        "name": "Manuelle Bewässerung",
+        "tab": "4196e12999474c71",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0c0d808961e8358b",
+        "type": "ui_group",
+        "name": "Benachrichtigung",
+        "tab": "4196e12999474c71",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8b70eafc253d7912",
+        "type": "ui_group",
+        "name": "Sensordaten",
+        "tab": "4196e12999474c71",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1eeab386b41610ce",
+        "type": "mqtt-broker",
+        "name": "uni ol mqtt",
+        "broker": "mqtt.iot.informatik.uni-oldenburg.de",
+        "port": "2883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4196e12999474c71",
+        "type": "ui_tab",
+        "name": "Pflanzenbewässerung",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
