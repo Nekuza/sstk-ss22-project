@@ -9,8 +9,8 @@ PubSubClient client(client);
 unsigned long  duration;
 unsigned int distance;
 unsigned int distanceStart;
-const int distanceLeererTank = 10; // in cm MUSS NOCH ÜBERPRÜFT WERDEN
-const int grenzwertTank = 1; //distanceLeererTank - distance = grenzwertTank
+const int distanceLeererTank = 10; // in cm
+const int grenzwertTank = 2; //distanceLeererTank - distance = grenzwertTank
 const int SENSOR_MAX_RANGE = 300; // in cm
 
 // Möglichkeit zur Festlegung der WiFi-Credentials. Aktuell deaktiviert, weil über WiFiManager verbunden wird
@@ -105,11 +105,16 @@ void reconnect() {
   }
 }
 
-void mqtt_publish(char* topic, char* message) {
-  Serial.print(topic);
-  Serial.print(": ");
-  Serial.println(message);       // Ausgabe des Wertes
-  client.publish(topic, message);
+//Abstand messen, um zu checken, ob der Tank leer ist
+boolean checkGenugWasserimTank(int distance, int grenzwert, int leererTank) {
+      if (leererTank - distance < grenzwertalso ) {
+        client.publish(publish_benachrichtigung, "Wassertank ist fast leer!");
+        Serial.println("Wassertank ist fast leer!");
+        return false;
+      } else {
+        return true;
+      }
+  
 }
 
 void setup() {
@@ -160,8 +165,9 @@ void loop() {
   digitalWrite(D2,HIGH); // Pumpe über relais anschalten
       
 
-  while (abs(distance-distanceStart) < 3) { // Wert erst zum Testen, noch anpassen
+  while (abs(distance-distanceStart) < 3 || checkGenugWasserimTank(distance, grenzwertTank, distanceLeererTank) ) { // Wert erst zum Testen, noch anpassen
     Serial.println(3);
+    break;
     digitalWrite(D7, LOW);
     delayMicroseconds(2);
     digitalWrite(D7, HIGH);
@@ -179,11 +185,8 @@ void loop() {
   // TODO Abstand zum Wasser in verbleibendes Wasser umrechnen
   client.publish(publish_verbleibendesWasser, (char*) distance);
    }
-   //Abstand messen, um zu checken, ob der Tank leer ist
-    if (distanceLeererTank - distance < grenzwertTank) {
-    client.publish(publish_benachrichtigung, "Wassertank ist fast leer!");
-    Serial.println("Wassertank ist fast leer!");
-  }
+
+   checkGenugWasserimTank(distance, grenzwertTank, distanceLeererTank);
    
    delay(10000);                        //  Pause in ms
 }
